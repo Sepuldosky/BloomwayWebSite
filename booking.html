@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Trip — BloomWay</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar">
+    <div class="navbar__logo">
+      <i class="fa-solid fa-spa"></i>
+      <span>BloomWay</span>
+    </div>
+
+    <nav class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <div class="navbar__search">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Enter a destination or keyword" />
+      </div>
+      <button id="searchBtn" class="btn btn--primary">Search</button>
+      <button id="clearBtn" class="btn btn--ghost">Clear</button>
+    </div>
+  </header>
+
+  <!-- ============ BOOKING HERO ============ -->
+  <section id="bookingHero" class="booking-hero">
+    <div class="booking-hero__overlay"></div>
+    <div class="booking-hero__content">
+      <p class="booking-hero__label" id="bookingLabel">DESTINATION</p>
+      <h1 class="booking-hero__title" id="bookingTitle">Loading...</h1>
+      <p class="booking-hero__dates" id="bookingDates">—</p>
+    </div>
+  </section>
+
+  <!-- ============ INFO ICONS ============ -->
+  <section class="booking-info">
+    <div class="booking-info__grid">
+      <div class="info-item">
+        <i class="fa-regular fa-calendar"></i>
+        <strong>DURATION</strong>
+        <span id="infoDuration">12 days</span>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-suitcase"></i>
+        <strong>SYSTEM</strong>
+        <span>All Inclusive</span>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-user-group"></i>
+        <strong>SPOTS</strong>
+        <span id="infoSpots">Available</span>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-credit-card"></i>
+        <strong>PRICE</strong>
+        <span id="infoPrice">—</span>
+      </div>
+    </div>
+
+    <blockquote class="booking-quote" id="bookingQuote">"—"</blockquote>
+  </section>
+
+  <!-- ============ STRIPE PAYMENT MOCKUP ============ -->
+  <section class="payment">
+    <div class="payment__container">
+      <div class="payment__header">
+        <h2>Complete your booking</h2>
+        <p>Secure payment powered by <strong>Stripe</strong></p>
+      </div>
+
+      <div class="payment__summary">
+        <div class="payment__summary-row">
+          <span>Destination</span>
+          <strong id="summaryDestination">—</strong>
+        </div>
+        <div class="payment__summary-row">
+          <span>Dates</span>
+          <strong id="summaryDates">—</strong>
+        </div>
+        <div class="payment__summary-row payment__summary-row--total">
+          <span>Total</span>
+          <strong id="summaryPrice">—</strong>
+        </div>
+      </div>
+
+      <form class="payment__form" onsubmit="handleFakePayment(event)">
+        <div class="form-group">
+          <label for="cardName">Cardholder Name</label>
+          <input type="text" id="cardName" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <div class="card-input">
+            <input type="text" id="cardNumber" placeholder="1234 1234 1234 1234" maxlength="19" required />
+            <div class="card-brands">
+              <i class="fa-brands fa-cc-visa"></i>
+              <i class="fa-brands fa-cc-mastercard"></i>
+              <i class="fa-brands fa-cc-amex"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cardExpiry">Expiration</label>
+            <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" required />
+          </div>
+          <div class="form-group">
+            <label for="cardCVC">CVC</label>
+            <input type="text" id="cardCVC" placeholder="CVC" maxlength="4" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cardCountry">Country</label>
+          <select id="cardCountry" required>
+            <option value="CL">Chile</option>
+            <option value="US">United States</option>
+            <option value="BR">Brazil</option>
+            <option value="JP">Japan</option>
+            <option value="AU">Australia</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn--pay">
+          <i class="fa-solid fa-lock"></i>
+          Pay <span id="payAmount">—</span>
+        </button>
+
+        <p class="payment__note">
+          <i class="fa-solid fa-circle-info"></i>
+          Demo mode — no real payment will be processed.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p>&copy; 2026 BloomWay. All rights reserved.</p>
+  </footer>
+
+  <script src="travel_recommendation.js"></script>
+  <script>
+    function handleFakePayment(event) {
+      event.preventDefault();
+      alert("Demo mode: payment not processed.\n\nIn a real implementation, this would charge your card via the Stripe API.");
+    }
+  </script>
+</body>
+</html>
